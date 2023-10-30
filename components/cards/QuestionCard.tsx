@@ -69,21 +69,21 @@ const QuestionCard = ({
           imgUrl="/assets/icons/like.svg"
           alt="Upvotes"
           value={formatAndDivideNumber(upvotes)}
-          title="Votes"
+          title={upvotes > 1 ? "Votes" : "Vote"}
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="Message"
           value={formatAndDivideNumber(answers.length)}
-          title="Answers"
+          title={answers.length > 1 ? "Answers" : "Answer"}
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           value={formatAndDivideNumber(views)}
-          title="Views"
+          title={views > 1 ? "Views" : "View"}
           textStyles="small-medium text-dark400_light800"
         />
       </div>

@@ -52,3 +52,28 @@ export const formatAndDivideNumber = (num: number): string => {
     return num.toString();
   }
 };
+export function getJoinedDate(date: Date): string {
+  if (!(date instanceof Date)) {
+    throw new Error('Invalid date object');
+  }
+
+  const monthNames: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const year: number = date.getFullYear();
+  const month: string = monthNames[date.getMonth()];
+
+  return `${month} ${year}`;
+}
+export const JoinedDate = (date: Date): string => {
+  // Extract the month and year from the Date object
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+
+  // Create the joined date string (e.g., "September 2023")
+  const joinedDate = `${month} ${year}`;
+
+  return joinedDate;
+}
