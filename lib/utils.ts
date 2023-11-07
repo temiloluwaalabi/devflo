@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import qs from "query-string";
 import { twMerge } from "tailwind-merge"
  
 export function cn(...inputs: ClassValue[]) {
@@ -42,14 +43,18 @@ export const getTimestamp = (createdAt: Date): string => {
 };
 
 export const formatAndDivideNumber = (num: number): string => {
-  if (num >= 1000000) {
-    const formattedNum = (num / 1000000).toFixed(1);
-    return `${formattedNum}M`;
-  } else if (num >= 1000) {
-    const formattedNum = (num / 1000).toFixed(1);
-    return `${formattedNum}K`;
-  } else {
-    return num.toString();
+  if(typeof num === 'number'){
+    if (num >= 1000000) {
+      const formattedNum = (num / 1000000).toFixed(1);
+      return `${formattedNum}M`;
+    } else if (num >= 1000) {
+      const formattedNum = (num / 1000).toFixed(1);
+      return `${formattedNum}K`;
+    } else {
+      return num.toString();
+    }
+  }else{
+    return 'N/A';
   }
 };
 export function getJoinedDate(date: Date): string {
@@ -76,4 +81,42 @@ export const JoinedDate = (date: Date): string => {
   const joinedDate = `${month} ${year}`;
 
   return joinedDate;
+}
+
+interface UrlQueryParams{
+  params: string;
+  key: string;
+  value: string | null
+}
+export const formUrlQuery = ({params, key, value}: UrlQueryParams) => {
+  const currentUrl = qs.parse(params);
+
+  currentUrl[key] = value;
+
+  return qs.stringifyUrl({
+    url: window.location.pathname,
+    query: currentUrl
+  }, {
+    skipNull: true
+  })
+}
+
+interface RemoveUrlQueryParams{
+  params: string;
+  keysToRemove: string[];
+}
+
+export const removeKeysFromQuery = ({params, keysToRemove}: RemoveUrlQueryParams) => {
+  const currentUrl = qs.parse(params);
+
+  keysToRemove.forEach((key) => {
+    delete currentUrl[key];
+  })
+
+  return qs.stringifyUrl({
+    url: window.location.pathname,
+    query: currentUrl
+  }, {
+    skipNull: true
+  })
 }

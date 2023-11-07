@@ -1,10 +1,13 @@
 import ProfileLink from "@/components/shared/ProfileLink";
+import StatsContainer from "@/components/shared/Stats";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { getJoinedDate } from "@/lib/utils";
 import { URLProps } from "@/types";
 import { SignedIn, auth } from "@clerk/nextjs";
+import AnswersTab from "@/components/shared/AnswersTab";
+import QuestionTab from "@/components/shared/QuestionTab";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -69,19 +72,34 @@ const Page = async ({ params, searchParams }: URLProps) => {
           </SignedIn>
         </div>
       </div>
-      Stats
+      <StatsContainer
+        totalQuestions={userInfo.totalQuestions}
+        totalAnswers={userInfo.totalAnswers}
+      />
       <div className="mt-10 flex gap-10">
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="background-light800_dark400 min-h-[42px] p-1">
             <TabsTrigger className="tab" value="top-posts">
-              Top Posts
+              Posts
             </TabsTrigger>
             <TabsTrigger className="tab" value="answers">
               Answers
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="top-posts">POSTS</TabsContent>
-          <TabsContent value="answers">Answers.</TabsContent>
+          <TabsContent value="top-posts">
+            <QuestionTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+          <TabsContent value="answers" className="flex w-full flex-col gap-6">
+            <AnswersTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
         </Tabs>
       </div>
     </>

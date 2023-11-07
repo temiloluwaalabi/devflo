@@ -2,63 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RenderTag from "../RenderTag";
+import { getHotQuestions } from "@/lib/actions/question.actions";
+import { getTopPopularTags } from "@/lib/actions/tag.actions";
 
-const hotQuestions = [
-  {
-    _id: "1",
-    title:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quos?",
-  },
-  {
-    _id: "2",
-    title:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quos?",
-  },
-  {
-    _id: "3",
-    title:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quos?",
-  },
-  {
-    _id: "4",
-    title:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quos?",
-  },
-  {
-    _id: "5",
-    title:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quos?",
-  },
-];
-
-const popularTags = [
-  {
-    _id: "1",
-    name: "javascript",
-    totlaQuestions: 5,
-  },
-  {
-    _id: "2",
-    name: "html",
-    totlaQuestions: 5,
-  },
-  {
-    _id: "3",
-    name: "css",
-    totlaQuestions: 5,
-  },
-  {
-    _id: "4",
-    name: "php",
-    totlaQuestions: 5,
-  },
-  {
-    _id: "5",
-    name: "python",
-    totlaQuestions: 5,
-  },
-];
-const RightSidebar = () => {
+const RightSidebar = async () => {
+  const hotQuestions = await getHotQuestions();
+  const popularTags = await getTopPopularTags();
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky right-0 top-0 flex h-screen w-[350px] flex-col gap-5 overflow-y-auto border-l p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden">
       <div>
@@ -90,7 +39,7 @@ const RightSidebar = () => {
               key={tag._id}
               _id={tag._id}
               name={tag.name}
-              totalQuestions={tag.totlaQuestions}
+              totalQuestions={tag.numberOfQuestions}
               showCount
             />
           ))}
