@@ -92,6 +92,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="top-posts">
+            {/* @ts-ignore */}
             <QuestionTab
               searchParams={searchParams}
               userId={userInfo.user._id}
@@ -102,6 +103,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
             value="answers"
             className="mt-5 flex w-full flex-col gap-6"
           >
+            {/* @ts-ignore */}
             <AnswersTab
               searchParams={searchParams}
               userId={userInfo.user._id}

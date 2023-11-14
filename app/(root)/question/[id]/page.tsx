@@ -93,7 +93,7 @@ const page = async ({ params, searchParams }: any) => {
           />
         ))}
       </div>
-
+      {/* @ts-ignore */}
       <AllAnswers
         questionId={result._id}
         userId={mongoUser._id}

@@ -16,10 +16,11 @@ const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
   });
   return (
     <div className="mt-8 flex flex-col gap-4">
-      {result.questions.map((question) => (
+      {result.questions.map((question: any) => (
         <QuestionCard
           key={question._id}
           _id={question._id}
+          // @ts-ignore
           clerkId={clerkId}
           title={question.title}
           tags={question.tags}

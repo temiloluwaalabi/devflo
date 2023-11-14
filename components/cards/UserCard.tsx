@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import RenderTag from "../shared/RenderTag";
-
+import React from "react";
 interface Props {
   user: {
     _id: string;

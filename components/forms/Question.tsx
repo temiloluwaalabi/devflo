@@ -41,7 +41,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
 
   const parsedQuestionDetails =
     questionDetails && JSON.parse(questionDetails || "");
-  const groupedTag = parsedQuestionDetails?.tags.map((tag) => tag.name);
+  const groupedTag = parsedQuestionDetails?.tags.map((tag: any) => tag.name);
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
     defaultValues: {
@@ -160,6 +160,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
               <FormControl className="mt-3.5">
                 {/* TODO: Add an editor */}
                 <Editor
+                  // @ts-ignore
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                   onInit={(evt, editor) => {
                     // @ts-ignore

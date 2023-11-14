@@ -18,6 +18,7 @@ interface QuestionProps {
     _id: string;
     name: string;
     picture: string;
+    clerkId?: string;
   };
   upvotes: number;
   views: number;
@@ -98,7 +99,6 @@ const QuestionCard = ({
             textStyles="small-medium text-dark400_light800"
           />
         </div>
-
       </div>
     </div>
   );
