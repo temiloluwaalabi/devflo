@@ -1,5 +1,5 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 "use client";
+
 import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -15,6 +15,7 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = ({
   // @ts-ignore
+
   className,
   ...props
 }: SheetPrimitive.DialogPortalProps) => (
