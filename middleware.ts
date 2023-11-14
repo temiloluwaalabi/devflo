@@ -1,4 +1,4 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
  
 export default authMiddleware({
   publicRoutes: [
@@ -16,11 +16,11 @@ export default authMiddleware({
   //     redirectToSignIn({returnBackUrl: req.url})
   //   }
   // },
-  // afterAuth(auth, req){
-  //   if(!auth.userId && !auth.isPublicRoute){
-  //     return redirectToSignIn({returnBackUrl: req.url})
-  //   }
-  // },
+  afterAuth(auth, req){
+    if(!auth.userId && !auth.isPublicRoute){
+      return redirectToSignIn({returnBackUrl: req.url})
+    }
+  },
   ignoredRoutes:[
     '/api/webhook', '/api/chatgpt',
   ]
