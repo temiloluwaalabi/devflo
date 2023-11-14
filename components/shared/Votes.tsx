@@ -12,6 +12,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "../ui/use-toast";
+// import { toast } from "../ui/use-toast";
 
 interface Props {
   type: string;
@@ -159,7 +160,7 @@ const Votes = ({
           </div>
         </div>
       </div>
-      {type === "Question" && (
+      {userId && type === "Question" && (
         <Image
           src={
             hasSaved
