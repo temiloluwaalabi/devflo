@@ -15,6 +15,7 @@ const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = ({
+  // @ts-ignore
   className,
   ...props
 }: SheetPrimitive.DialogPortalProps) => (
