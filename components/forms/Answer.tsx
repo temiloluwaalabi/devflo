@@ -6,14 +6,14 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { AnswerSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import { useTheme } from "@/context/ThemeProvider";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.actions";
 import { usePathname } from "next/navigation";
@@ -68,6 +68,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
     try {
       const response = await fetch(
+        // @ts-ignore
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`,
         {
           method: "POST",
@@ -126,6 +127,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                 <FormControl className="mt-3.5">
                   {/* TODO: Add an editor */}
                   <Editor
+                    // @ts-ignore
                     apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                     onInit={(evt, editor) => {
                       // @ts-ignore

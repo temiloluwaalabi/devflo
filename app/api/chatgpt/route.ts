@@ -8,6 +8,7 @@ export const POST = async (request: Request) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        // @ts-ignore
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
@@ -25,6 +26,7 @@ export const POST = async (request: Request) => {
     })
 
     const responseData = await response.json();
+    // console.log(responseData); // Add this line to check the structure of responseData
     const reply = responseData.choices[0].message.content;
 
     return NextResponse.json({ reply })
